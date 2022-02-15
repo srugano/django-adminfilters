@@ -70,11 +70,11 @@ select.filter-autocomplete {
   width: 0;
 }
 
-.select2-container--filter-autocomplete[dir=rtl] .select2-selection--single .select2-selection__clear {
+.select2-container--filter-autocomplete[dir="rtl"] .select2-selection--single .select2-selection__clear {
   float: left;
 }
 
-.select2-container--filter-autocomplete[dir=rtl] .select2-selection--single .select2-selection__arrow {
+.select2-container--filter-autocomplete[dir="rtl"] .select2-selection--single .select2-selection__arrow {
   left: 1px;
   right: auto;
 }
@@ -148,16 +148,16 @@ select.filter-autocomplete {
   color: #333;
 }
 
-.select2-container--filter-autocomplete[dir=rtl] .select2-selection--multiple .select2-selection__choice, .select2-container--filter-autocomplete[dir=rtl] .select2-selection--multiple .select2-selection__placeholder, .select2-container--filter-autocomplete[dir=rtl] .select2-selection--multiple .select2-search--inline {
+.select2-container--filter-autocomplete[dir="rtl"] .select2-selection--multiple .select2-selection__choice, .select2-container--filter-autocomplete[dir="rtl"] .select2-selection--multiple .select2-selection__placeholder, .select2-container--filter-autocomplete[dir="rtl"] .select2-selection--multiple .select2-search--inline {
   float: right;
 }
 
-.select2-container--filter-autocomplete[dir=rtl] .select2-selection--multiple .select2-selection__choice {
+.select2-container--filter-autocomplete[dir="rtl"] .select2-selection--multiple .select2-selection__choice {
   margin-left: 5px;
   margin-right: auto;
 }
 
-.select2-container--filter-autocomplete[dir=rtl] .select2-selection--multiple .select2-selection__choice__remove {
+.select2-container--filter-autocomplete[dir="rtl"] .select2-selection--multiple .select2-selection__choice__remove {
   margin-left: 2px;
   margin-right: auto;
 }
@@ -267,26 +267,30 @@ select.filter-autocomplete {
   text-align: center;
 }
 
-#changelist-filter li a.adminfilters.button.filter {
-  background-color: #888;
-}
-#changelist-filter li a.adminfilters.button.filter:hover {
-  background-color: #747474;
-}
-#changelist-filter li a.adminfilters.button.delete {
-  background-color: #e1adad;
-}
-#changelist-filter li a.adminfilters.button.delete:hover {
-  background-color: #dc6c6c;
-}
-#changelist-filter li a.adminfilters.button.clear {
-  background-color: #79aec8;
-}
-#changelist-filter li a.adminfilters.button.clear:hover {
-  background-color: #417690;
-}
-#changelist-filter li a.adminfilters.button.disabled {
-  background-color: #d3caca !important;
+#changelist-filter li a.adminfilters.button {
+  &.filter {
+    background-color: #888;
+    &:hover{
+      background-color: #747474;
+    }
+  }
+  &.delete {
+    background-color: #e1adad;
+    &:hover{
+      background-color: #dc6c6c;
+    }
+  }
+
+  &.clear {
+    background-color: #79aec8;
+    &:hover{
+      background-color: #417690;
+    }
+  }
+
+  &.disabled {
+    background-color: #d3caca !important;
+  }
 }
 
 #changelist-filter li input:disabled {
@@ -295,6 +299,7 @@ select.filter-autocomplete {
 
 #changelist-filter div.adminfilters.box.error {
   background-color: #f8bcbc;
+
 }
 
 #changelist-filter div.adminfilters.box.collapse div.filter-content {
@@ -306,7 +311,7 @@ select.filter-autocomplete {
 }
 
 #changelist .opener {
-  background: url("../admin/img/sorting-icons.svg");
+  background: url('../admin/img/sorting-icons.svg');
   background-repeat: no-repeat;
   width: 14px;
   height: 14px;
@@ -317,5 +322,3 @@ select.filter-autocomplete {
   cursor: pointer;
   /*background-position: 0 -56px;*/
 }
-
-/*# sourceMappingURL=adminfilters.css.map */
