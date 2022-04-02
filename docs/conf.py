@@ -75,8 +75,8 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'Django AdminFilters'
-copyright = u'2012-2022, Stefano Apostolico'
+project = 'Django AdminFilters'
+copyright = '2012-2022, Stefano Apostolico'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -224,8 +224,8 @@ htmlhelp_basename = 'djangoadminactionsdoc'
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title, author, documentclass [howto/manual]).
 latex_documents = [
-    ('index', 'DjangoAdminActions.tex', u'Django Admin Actions Documentation',
-     u'Stefano Apostolico', 'manual'),
+    ('index', 'DjangoAdminActions.tex', 'Django Admin Actions Documentation',
+     'Stefano Apostolico', 'manual'),
 ]
 
 # The name of an image file (relative to this directory) to place at the top of
@@ -257,6 +257,6 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    ('index', 'djangoadminactions', u'Django Admin Actions Documentation',
-     [u'Stefano Apostolico'], 1)
+    ('index', 'djangoadminactions', 'Django Admin Actions Documentation',
+     ['Stefano Apostolico'], 1)
 ]

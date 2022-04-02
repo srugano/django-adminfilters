@@ -14,7 +14,7 @@ class RelatedFieldCheckBoxFilter(WrappperMixin, MediaDefinitionFilter, RelatedFi
     def __init__(self, field, request, params, model, model_admin, field_path):
         self.model_admin = model_admin
         super().__init__(field, request, params, model, model_admin, field_path)
-        self.lookup_kwarg = '%s__%s' % (field_path, field.target_field.name)
+        self.lookup_kwarg = f'{field_path}__{field.target_field.name}'
         self.lookup_val = request.GET.getlist(self.lookup_kwarg, [])
 
     def queryset(self, request, queryset):
@@ -33,9 +33,9 @@ class RelatedFieldCheckBoxFilter(WrappperMixin, MediaDefinitionFilter, RelatedFi
             EMPTY_CHANGELIST_VALUE = self.model_admin.get_empty_value_display()
 
         uncheck_all = []
-        uncheck_all.append('{}={}'.format(self.lookup_kwarg_isnull, 1))
+        uncheck_all.append(f'{self.lookup_kwarg_isnull}={1}')
         for i in self.lookup_choices:
-            uncheck_all.append('{}={}'.format(self.lookup_kwarg, i[0]))
+            uncheck_all.append(f'{self.lookup_kwarg}={i[0]}')
 
         yield {
             'selected': not len(self.lookup_val) and not self.lookup_val_isnull,
@@ -49,7 +49,7 @@ class RelatedFieldCheckBoxFilter(WrappperMixin, MediaDefinitionFilter, RelatedFi
             'query_string': cl.get_query_string({self.lookup_kwarg_isnull: 1},
                                                 [self.lookup_kwarg, self.lookup_kwarg_isnull]),
             'display': _('None'),
-            'uncheck_to_remove': '{}=1'.format(self.lookup_kwarg_isnull)
+            'uncheck_to_remove': f'{self.lookup_kwarg_isnull}=1'
         }
         for pk_val, val in self.lookup_choices:
             yield {
@@ -60,10 +60,9 @@ class RelatedFieldCheckBoxFilter(WrappperMixin, MediaDefinitionFilter, RelatedFi
                     },
                     [self.lookup_kwarg_isnull]),
                 'display': val,
-                'uncheck_to_remove': '{}={}'.format(self.lookup_kwarg, pk_val) if pk_val else ''
+                'uncheck_to_remove': f'{self.lookup_kwarg}={pk_val}' if pk_val else ''
             }
-        if ((isinstance(self.field, ForeignObjectRel) and self.field.field.null or
-             hasattr(self.field, 'rel') and self.field.null)):
+        if (isinstance(self.field, ForeignObjectRel) and self.field.field.null or hasattr(self.field, 'rel') and self.field.null):
             yield {
                 'selected': bool(self.lookup_val_isnull),
                 'query_string': cl.get_query_string(
@@ -71,6 +70,6 @@ class RelatedFieldCheckBoxFilter(WrappperMixin, MediaDefinitionFilter, RelatedFi
                         self.lookup_kwarg_isnull: 'True',
                     },
                     [self.lookup_kwarg]),
-                'uncheck_to_remove': '{}=1'.format(self.lookup_kwarg_isnull),
+                'uncheck_to_remove': f'{self.lookup_kwarg_isnull}=1',
                 'display': EMPTY_CHANGELIST_VALUE,
             }
