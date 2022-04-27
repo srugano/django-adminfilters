@@ -58,7 +58,7 @@ class NumberFilter(ValueFilter):
             else:
                 if m1 and m1.groups():
                     op, value = self.rex1.match(raw_value).groups()
-                    match = '%s__%s' % (self.field.name, self.map[op or '='])
+                    match = '{}__{}'.format(self.field.name, self.map[op or '='])
                     self.filters = {match: value}
                 elif m_range and m_range.groups():
                     start, end = self.re_range.match(raw_value).groups()

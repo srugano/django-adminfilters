@@ -1,4 +1,3 @@
-
 import json
 
 from django import forms
@@ -44,7 +43,7 @@ class ValueFilter(MediaDefinitionFilter, SmartFieldListFilter):
         # self.operator = '+'
 
     def expected_parameters(self):
-        self.lookup_kwarg = '%s__%s' % (self.field_path, self.lookup_name)
+        self.lookup_kwarg = f'{self.field_path}__{self.lookup_name}'
         self.lookup_kwarg_negated = '%s__negate' % self.lookup_kwarg
         return [self.lookup_kwarg, self.lookup_kwarg_negated]
 

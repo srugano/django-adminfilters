@@ -9,3 +9,4 @@ dist/
 coverage.xml
 pytest.xml
 docs/images/*.mov
+__pycache__/

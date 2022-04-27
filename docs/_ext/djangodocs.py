@@ -132,7 +132,7 @@ class DjangoHTMLTranslator(SmartyPantsHTMLTranslator):
         self.body.append(
             self.starttag(node, 'div', CLASS=node['type'])
         )
-        title = '%s%s' % (
+        title = '{}{}'.format(
             self.version_text[node['type']] % node['version'],
             len(node) and ':' or '.'
         )
