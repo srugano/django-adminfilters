@@ -23,8 +23,8 @@ class AutoCompleteFilter(SmartFieldListFilter, MediaDefinitionFilter):
     url_name = '%s:%s_%s_autocomplete'
 
     def __init__(self, field, request, params, model, model_admin, field_path):
-        self.lookup_kwarg = '%s__exact' % field_path
-        self.lookup_kwarg_isnull = '%s__isnull' % field_path
+        self.lookup_kwarg = f'{field_path}__exact'
+        self.lookup_kwarg_isnull = f'{field_path}__isnull'
         self.lookup_val = params.get(self.lookup_kwarg)
         super().__init__(field, request, params, model, model_admin, field_path)
         self.admin_site = model_admin.admin_site
@@ -63,17 +63,17 @@ class AutoCompleteFilter(SmartFieldListFilter, MediaDefinitionFilter):
     def media(self):
         extra = '' if settings.DEBUG else '.min'
         i18n_name = SELECT2_TRANSLATIONS.get(get_language())
-        i18n_file = ('admin/js/vendor/select2/i18n/%s.js' % i18n_name,) if i18n_name else ()
+        i18n_file = (f'admin/js/vendor/select2/i18n/{i18n_name}.js',) if i18n_name else ()
         return forms.Media(
-            js=('admin/js/vendor/jquery/jquery%s.js' % extra,
-                'admin/js/vendor/select2/select2.full%s.js' % extra,
+            js=(f'admin/js/vendor/jquery/jquery{extra}.js',
+                f'admin/js/vendor/select2/select2.full{extra}.js',
                 ) + i18n_file + ('admin/js/jquery.init.js',
                                  'admin/js/autocomplete.js',
-                                 'adminfilters/autocomplete%s.js' % extra,
+                                 f'adminfilters/autocomplete{extra}.js',
                                  ),
             css={
                 'screen': (
-                    'admin/css/vendor/select2/select2%s.css' % extra,
+                    f'admin/css/vendor/select2/select2{extra}.css',
                     'adminfilters/adminfilters.css',
                 ),
             },

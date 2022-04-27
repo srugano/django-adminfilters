@@ -26,7 +26,7 @@ class NumberFilter(ValueFilter):
     @classmethod
     def factory(cls, *, title=None, **kwargs):
         if 'lookup_name' in kwargs:
-            raise ValueError(f"'lookup_name' is not a valid value for "
+            raise ValueError("'lookup_name' is not a valid value for "
                              f"'{cls.__class__.__name__}.factory'")
         return super().factory(title=title, **kwargs)
 
@@ -52,7 +52,7 @@ class NumberFilter(ValueFilter):
             m_list = self.re_list.match(raw_value)
             m_unlike = self.re_unlike.match(raw_value)
             if m_unlike and m_unlike.groups():
-                match = '%s__exact' % self.field.name
+                match = f'{self.field.name}__exact'
                 op, value = self.re_unlike.match(raw_value).groups()
                 queryset = queryset.exclude(**{match: value})
             else:
@@ -66,10 +66,10 @@ class NumberFilter(ValueFilter):
                                     f'{self.field.name}__lte': end}
                 elif m_list and m_list.groups():
                     value = raw_value.split(',')
-                    match = '%s__in' % self.field.name
+                    match = f'{self.field.name}__in'
                     self.filters = {match: value}
                 # elif m_unlike and m_unlike.groups():
-                #     match = '%s__exact' % self.field.name
+                #     match = f'{self.field.name}__exact'
                 #     op, value = self.re_unlike.match(raw).groups()
                 #     queryset = queryset.exclude(**{match: value})
                 else:  # pragma: no cover

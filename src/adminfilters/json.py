@@ -18,11 +18,11 @@ class JsonFieldFilter(MediaDefinitionFilter, SmartFieldListFilter):
     placeholder = _('JSON value')
 
     def __init__(self, field, request, params, model, model_admin, field_path):
-        self.lookup_kwarg_key = '%s__key' % field_path
-        self.lookup_kwarg_value = '%s__value' % field_path
-        self.lookup_kwarg_negated = '%s__negate' % field_path
-        self.lookup_kwarg_options = '%s__options' % field_path
-        self.lookup_kwarg_type = '%s__type' % field_path
+        self.lookup_kwarg_key = f'{field_path}__key'
+        self.lookup_kwarg_value = f'{field_path}__value'
+        self.lookup_kwarg_negated = f'{field_path}__negate'
+        self.lookup_kwarg_options = f'{field_path}__options'
+        self.lookup_kwarg_type = f'{field_path}__type'
         self.lookup_key_val = params.get(self.lookup_kwarg_key, '')
         self.lookup_value_val = params.get(self.lookup_kwarg_value, '')
         self.lookup_negated_val = params.get(self.lookup_kwarg_negated, 'false')
@@ -84,11 +84,11 @@ class JsonFieldFilter(MediaDefinitionFilter, SmartFieldListFilter):
     def media(self):
         extra = '' if settings.DEBUG else '.min'
         i18n_name = SELECT2_TRANSLATIONS.get(get_language())
-        i18n_file = ('admin/js/vendor/select2/i18n/%s.js' % i18n_name,) if i18n_name else ()
+        i18n_file = (f'admin/js/vendor/select2/i18n/{i18n_name}.js',) if i18n_name else ()
         return forms.Media(
-            js=('admin/js/vendor/jquery/jquery%s.js' % extra,
+            js=(f'admin/js/vendor/jquery/jquery{extra}.js',
                 ) + i18n_file + ('admin/js/jquery.init.js',
-                                 'adminfilters/jsonfilter%s.js' % extra,
+                                 f'adminfilters/jsonfilter{extra}.js',
                                  ),
             css={
                 'screen': (

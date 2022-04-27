@@ -10,4 +10,4 @@ class StoredFilterAdmin(admin.ModelAdmin):
     search_fields = ('name',)
     list_display = ('name', 'owner', 'content_type')
     raw_id_fields = ('owner', 'content_type')
-    list_filter = ('content_type', RelatedFieldComboFilter),
+    list_filter = ('content_type', RelatedFieldComboFilter)

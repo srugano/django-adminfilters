@@ -69,9 +69,9 @@ class DepotManager(WrappperMixin, ListFilter):
     def media(self):
         extra = '' if settings.DEBUG else '.min'
         i18n_name = SELECT2_TRANSLATIONS.get(get_language())
-        i18n_file = ('admin/js/vendor/select2/i18n/%s.js' % i18n_name,) if i18n_name else ()
+        i18n_file = (f'admin/js/vendor/select2/i18n/{i18n_name}.js',) if i18n_name else ()
         return forms.Media(
-            js=('admin/js/vendor/jquery/jquery%s.js' % extra,
+            js=(f'admin/js/vendor/jquery/jquery{extra}.js',
                 ) + i18n_file + ('admin/js/jquery.init.js',
                                  'adminfilters/depot%s.js' % extra,
                                  ),

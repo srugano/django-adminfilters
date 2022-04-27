@@ -8,8 +8,8 @@ from adminfilters.mixin import SmartFieldListFilter
 class MultipleSelectFieldListFilter(SmartFieldListFilter):
 
     def __init__(self, field, request, params, model, model_admin, field_path):
-        self.lookup_kwarg = '%s_filter' % field_path
-        self.filter_statement = '%s' % field_path
+        self.lookup_kwarg = f'{field_path}_filter'
+        self.filter_statement = f'{field_path}'
         self.lookup_val = params.pop(self.lookup_kwarg, None)
         self.lookup_choices = field.get_choices(include_blank=False)
         super().__init__(field, request, params, model, model_admin, field_path)
@@ -109,7 +109,7 @@ class UnionFieldListFilter(MultipleSelectFieldListFilter):
     def queryset(self, request, queryset):
         filter_values = self.values()
         if filter_values:
-            filter_statement = '%s__in' % self.filter_statement
+            filter_statement = f'{self.filter_statement}__in'
             filter_dct = {
                 filter_statement: filter_values
             }

@@ -20,9 +20,9 @@ class DjangoLookupFilter(MediaDefinitionFilter, SmartListFilter):
     placeholder = _('field value')
 
     def __init__(self, request, params, model, model_admin):
-        self.lookup_kwarg_key = '%s__key' % self.parameter_name
-        self.lookup_kwarg_value = '%s__value' % self.parameter_name
-        self.lookup_kwarg_negated = '%s__negate' % self.parameter_name
+        self.lookup_kwarg_key = f'{self.parameter_name}__key'
+        self.lookup_kwarg_value = f'{self.parameter_name}__value'
+        self.lookup_kwarg_negated = f'{self.parameter_name}__negate'
         self.lookup_field_val = params.pop(self.lookup_kwarg_key, '')
         self.lookup_value_val = params.pop(self.lookup_kwarg_value, '')
         self.lookup_negated_val = params.pop(self.lookup_kwarg_negated, 'false')
@@ -90,11 +90,11 @@ class DjangoLookupFilter(MediaDefinitionFilter, SmartListFilter):
     def media(self):
         extra = '' if settings.DEBUG else '.min'
         i18n_name = SELECT2_TRANSLATIONS.get(get_language())
-        i18n_file = ('admin/js/vendor/select2/i18n/%s.js' % i18n_name,) if i18n_name else ()
+        i18n_file = (f'admin/js/vendor/select2/i18n/{i18n_name}.js',) if i18n_name else ()
         return forms.Media(
-            js=('admin/js/vendor/jquery/jquery%s.js' % extra,
+            js=(f'admin/js/vendor/jquery/jquery{extra}.js',
                 ) + i18n_file + ('admin/js/jquery.init.js',
-                                 'adminfilters/dj%s.js' % extra,
+                                 f'adminfilters/dj{extra}.js',
                                  ),
             css={
                 'screen': (
